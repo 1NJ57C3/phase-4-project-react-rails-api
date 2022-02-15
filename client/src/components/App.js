@@ -1,18 +1,28 @@
 import '../styles/App.css';
 import { useState, useEffect } from 'react';
+import LoginForm from "./LoginForm"
+import SignUpForm from './SignUpForm';
+import NavBar from './NavBar'
+
+
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null);
 
-  useEffect(()=> {
-    fetch('/hello')
-      .then(r => r.json())
-      .then(d => setCount(d.count));
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
   }, []);
 
   return (
     <div className="App">
-      <h1>Page Count: {count}</h1>
+      <NavBar />
+      <SignUpForm />
+      <LoginForm />
     </div>
   );
 }
