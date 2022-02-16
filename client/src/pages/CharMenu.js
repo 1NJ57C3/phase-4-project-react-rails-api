@@ -31,9 +31,8 @@ function CharMenu() {
   return (
     <>
       <div>
-        <Button> New Character </Button>{" "}
+        <Button primary> New Character </Button>{" "}
       </div>
-      <div>{displayCharList}</div>
     </>
   );
 }

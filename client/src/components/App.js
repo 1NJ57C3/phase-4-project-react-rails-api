@@ -1,11 +1,11 @@
-import '../styles/App.css';
-import { useState, useEffect } from 'react';
-import SignUpForm from './SignUpForm';
-import NavBar from './NavBar'
-import { Switch, Route } from "react-router-dom";
+import "../styles/App.css";
+import { useState, useEffect } from "react";
+import SignUpForm from "./SignUpForm";
+import NavBar from "./NavBar";
+import { Switch, Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
-import CharMenu from '../pages/CharMenu';
-
+import CharMenu from "../pages/CharMenu";
+import CharCreateForm from "./CharCreateForm";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -24,13 +24,16 @@ function App() {
   return (
     <>
       <NavBar user={user} setUser={setUser} />
-      <main>        
-        <Switch>        
+      {/* <main> */}
+      {/* <Switch>
           <Route path="/">
             <CharMenu />
           </Route>
-        </Switch>       
-      </main>
+          <Route path="/char_create" element={<CharCreateForm />}></Route>
+        </Switch> */}
+      <CharMenu />
+      <CharCreateForm />
+      {/* </main> */}
     </>
   );
 }

@@ -12,9 +12,7 @@ function NavBar({ user, setUser }) {
 
   return (
     <>
-      <Button  onClick={handleLogoutClick}>
-        Logout
-      </Button>
+      <Button onClick={handleLogoutClick}>Logout</Button>
     </>
   );
 }
