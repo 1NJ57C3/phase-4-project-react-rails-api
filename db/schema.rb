@@ -53,9 +53,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_15_215530) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-  
+
   add_foreign_key "character_equipments", "characters"
   add_foreign_key "character_equipments", "equipment"
   add_foreign_key "characters", "users"
-
 end
