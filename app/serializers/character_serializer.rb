@@ -1,4 +1,5 @@
 class CharacterSerializer < ActiveModel::Serializer
-  attributes :id, :char_name, :race, :str, :dex, :vit, :luk, :def
-  has_one :user
+  attributes :id, :char_name, :job, :atk, :acc, :vit, :luk, :def
+
+  has_many :equipment
 end

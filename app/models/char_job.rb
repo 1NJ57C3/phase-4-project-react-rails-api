@@ -1,0 +1,2 @@
+class CharJob < ApplicationRecord
+end
