@@ -6,9 +6,9 @@ const Textarea = styled.textarea`
   border-color: #dbdbdb;
   -webkit-appearance: none;
   max-width: 100%;
-  width: 100%;
+  width: 50%;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: .5;
   padding: 4px;
   resize: none;
 `;

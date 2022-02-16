@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const COLORS = {
   primary: {
@@ -11,16 +11,31 @@ const COLORS = {
   },
 };
 
-function Button({ variant = "fill", color = "primary", ...props }) {
-  let Component;
-  if (variant === "fill") {
-    Component = FillButton;
-  } else if (variant === "outline") {
-    Component = OutlineButton;
-  }
+// function Button({ variant = "fill", color = "primary", ...props }) {
+//   let Component;
+//   if (variant === "fill") {
+//     Component = FillButton;
+//   } else if (variant === "outline") {
+//     Component = OutlineButton;
+//   }
 
-  return <Component style={COLORS[color]} {...props} />;
-}
+//   return <Component style={COLORS[color]} {...props} />;
+// }
+
+const Button = styled.button`
+  background: transparent;
+  border-radius: 3px;
+  border: 2px solid palevioletred;
+  color: palevioletred;
+  margin: 0 1em;
+  padding: 0.25em 1em;
+  ${(props) =>
+    props.primary &&
+    css`
+      background: palevioletred;
+      color: white;
+    `};
+`;
 
 const ButtonBase = styled.button`
   cursor: pointer;
