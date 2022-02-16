@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_15_215530) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_16_015911) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "char_jobs", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.bigint "job_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_char_jobs_on_character_id"
+    t.index ["job_id"], name: "index_char_jobs_on_job_id"
+  end
 
   create_table "character_equipments", force: :cascade do |t|
     t.bigint "character_id", null: false
@@ -26,9 +35,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_15_215530) do
   create_table "characters", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "char_name"
-    t.string "race"
-    t.integer "str"
-    t.integer "dex"
+    t.string "job"
+    t.integer "atk"
+    t.integer "acc"
     t.integer "vit"
     t.integer "luk"
     t.integer "def"
@@ -47,6 +56,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_15_215530) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "jobs", force: :cascade do |t|
+    t.string "job_name"
+    t.integer "atk"
+    t.integer "acc"
+    t.integer "vit"
+    t.integer "luk"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -54,6 +73,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_15_215530) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "char_jobs", "characters"
+  add_foreign_key "char_jobs", "jobs"
   add_foreign_key "character_equipments", "characters"
   add_foreign_key "character_equipments", "equipment"
   add_foreign_key "characters", "users"

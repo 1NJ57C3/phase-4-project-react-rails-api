@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :character_equipments
-  resources :equipment
+  resources :char_jobs, only: [:index]
+  resources :jobs, only: [:index, :show]
+  resources :character_equipments, only: [:show, :update]
+  resources :equipment, only: [:index, :show]
   resources :characters
-  resources :users
+  resources :users, only: [:show, :create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
