@@ -1,9 +1,10 @@
 import '../styles/App.css';
 import { useState, useEffect } from 'react';
-import LoginForm from "./LoginForm"
 import SignUpForm from './SignUpForm';
 import NavBar from './NavBar'
-
+import { Switch, Route } from "react-router-dom";
+import Login from "../pages/Login";
+import CharMenu from '../pages/CharMenu';
 
 
 function App() {
@@ -18,12 +19,19 @@ function App() {
     });
   }, []);
 
+  if (!user) return <Login onLogin={setUser} />;
+
   return (
-    <div className="App">
-      <NavBar />
-      <SignUpForm />
-      <LoginForm />
-    </div>
+    <>
+      <NavBar user={user} setUser={setUser} />
+      <main>        
+        <Switch>        
+          <Route path="/">
+            <CharMenu />
+          </Route>
+        </Switch>       
+      </main>
+    </>
   );
 }
 

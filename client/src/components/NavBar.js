@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../styles";
 
 function NavBar({ user, setUser }) {
   function handleLogoutClick() {
@@ -11,9 +12,9 @@ function NavBar({ user, setUser }) {
 
   return (
     <>
-      <button variant="outline-secondary" onClick={handleLogoutClick}>
+      <Button  onClick={handleLogoutClick}>
         Logout
-      </button>
+      </Button>
     </>
   );
 }
