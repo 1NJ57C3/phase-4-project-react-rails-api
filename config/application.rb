@@ -41,6 +41,6 @@ module Phase4ProjectReactRailsApi
     config.middleware.use ActionDispatch::Session::CookieStore
 
     # Verifies cookies are from same site to help protect against CSRF
-    config.action_dispatch.cookies_same_site_protection = :strict
+    # config.action_dispatch.cookies_same_site_protection = :strict
   end
 end

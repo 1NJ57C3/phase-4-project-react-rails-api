@@ -10,7 +10,7 @@ class CharactersController < ApplicationController
 
     # * Extra two lines append one each piece of starter gear on Character Creation
     def create
-        c = u.characters.create!(c_params, def: 0)
+        c = u.characters.create!(c_params)
         c.character_equipment.create!(starter_weapon)
         c.character_equipment.create!(starter_armor)
         render json: c, status: 201
@@ -39,6 +39,6 @@ class CharactersController < ApplicationController
     end
 
     def c_params
-        params.permit(:char_name, :class, :str, :dex, :vit, :luk)
+        params.permit(:char_name, :job, :atk, :acc, :vit, :luk)
     end
 end
