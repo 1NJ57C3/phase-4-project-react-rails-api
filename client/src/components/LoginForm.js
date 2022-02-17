@@ -25,9 +25,7 @@ function LoginForm({ onLogin }) {
       }
     });
   }
-
   return (
-      
     <form onSubmit={handleSubmit}>
       <FormField>
         <Label htmlFor="username">Username</Label>

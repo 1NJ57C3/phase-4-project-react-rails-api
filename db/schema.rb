@@ -35,12 +35,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_16_015911) do
   create_table "characters", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "char_name"
-    t.string "race"
-    t.integer "str"
-    t.integer "dex"
+    t.string "job"
+    t.integer "atk"
+    t.integer "acc"
     t.integer "vit"
     t.integer "luk"
-    t.integer "def"
+    t.integer "arm"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_characters_on_user_id"

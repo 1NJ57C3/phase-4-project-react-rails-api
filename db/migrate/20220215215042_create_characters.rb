@@ -8,7 +8,7 @@ class CreateCharacters < ActiveRecord::Migration[7.0]
       t.integer :acc
       t.integer :vit
       t.integer :luk
-      t.integer :def
+      t.integer :arm
 
       t.timestamps
     end

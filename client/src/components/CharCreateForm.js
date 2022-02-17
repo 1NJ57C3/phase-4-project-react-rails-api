@@ -1,44 +1,203 @@
-import React, { useState } from "react";
-import { Button } from "../styles";
-import { Textarea } from "../styles";
-import { Label } from "../styles";
+import React, { useState, useEffect } from "react";
+import { Label, Button } from "../styles";
+import { Link } from "react-router-dom";
 
 function CharCreateForm() {
+  useEffect(() => {
+    fetch("/jobs")
+      .then((r) => r.json())
+      .then((data) => setJobs(data));
+  }, []);
+
+  const [formValue, setFormValue] = useState({
+    char_name: "",
+    job: "",
+    atk: 0,
+    acc: 0,
+    vit: 0,
+    luk: 0,
+    arm: 0,
+    statPts: 5,
+  });
+  const [jobs, setJobs] = useState([]);
+
+  console.log(formValue);
+  console.log(jobs);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (formValue.statPts > 0) {
+      alert("Spend remaining stat points, bitch");
+    } else if (formValue.char_name.length < 3) {
+      alert("Give us a better name than that, bitch");
+    } 
+    else {
+      // console.log(formValue);
+      fetch("/characters", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formValue),
+      }).then((r) => r.json()).then(data=>console.log(data))
+    }
+  }
+
+  function selectWar() {
+    setFormValue({
+      ...formValue,
+      job: jobs[0].job_name,
+      atk: jobs[0].atk,
+      acc: jobs[0].acc,
+      luk: jobs[0].luk,
+      vit: jobs[0].vit,
+      statPts: 5,
+    });
+  }
+
+  function selectThf() {
+    setFormValue({
+      ...formValue,
+      job: jobs[1].job_name,
+      atk: jobs[1].atk,
+      acc: jobs[1].acc,
+      luk: jobs[1].luk,
+      vit: jobs[1].vit,
+      statPts: 5,
+    });
+  }
+  function selectWiz() {
+    setFormValue({
+      ...formValue,
+      job: jobs[2].job_name,
+      atk: jobs[2].atk,
+      acc: jobs[2].acc,
+      luk: jobs[2].luk,
+      vit: jobs[2].vit,
+      statPts: 5,
+    });
+  }
+
+  function handleIncrementClick(e) {
+    let stat = e.target.parentNode.children[1].innerHTML
+      .slice(-3)
+      .toLowerCase();
+    console.log("TEST :", formValue[stat]);
+    setFormValue({
+      ...formValue,
+      [stat]: formValue[stat] + 1,
+      statPts: formValue.statPts - 1,
+    });
+  }
+
+  function handleDecrementClick(e) {
+    let stat = e.target.parentNode.children[1].innerHTML
+      .slice(-3)
+      .toLowerCase();
+
+    if (formValue.job === "warrior") {
+      formValue[stat] === jobs[0][stat]
+        ? alert("Cannot go below base value")
+        : setFormValue({
+            ...formValue,
+            [stat]: formValue[stat] - 1,
+            statPts: formValue.statPts + 1,
+          });
+    } else if (formValue.job === "thief") {
+      formValue[stat] === jobs[1][stat]
+        ? alert("Cannot go below base value")
+        : setFormValue({
+            ...formValue,
+            [stat]: formValue[stat] - 1,
+            statPts: formValue.statPts + 1,
+          });
+    } else if (formValue.job === "wizard") {
+      formValue[stat] === jobs[2][stat]
+        ? alert("Cannot go below base value")
+        : setFormValue({
+            ...formValue,
+            [stat]: formValue[stat] - 1,
+            statPts: formValue.statPts + 1,
+          });
+    }
+  }
+
   return (
     <div>
       <div>
         <h1>This is Character Create Form</h1>
-        <Button> Warrier </Button>
-        <Button> Thief </Button>
-        <Button> Wizzard </Button>
+        <Button onClick={selectWar}> Warrior </Button>
+        <Button onClick={selectThf}> Thief </Button>
+        <Button onClick={selectWiz}> Wizard </Button>
       </div>
-      <Textarea>Input Name Here</Textarea>
-      <form>
-        <div>
-          <Button> Down ATK</Button>
-          <Label>ATK</Label>
-          <Button> Up ATK</Button>
-        </div>
-        <div>
-          <Button> Down ACC</Button>
-          <Label>ACC</Label>
-          <Button> Up ACC</Button>
-        </div>
-        <div>
-          <Button> Down VIT</Button>
-          <Label>VIT</Label>
-          <Button> Up VIT</Button>
-        </div>
-        <div>
-          <Button> Down LUK</Button>
-          <Label>LUK</Label>
-          <Button> Up LUK</Button>
-        </div>
-      </form>
-      <Label>Attributes Left: "Number Here"</Label>
-      <Button>ReRoll</Button>
-      <form>
-        <Button>Create</Button>
+
+      <label>
+        Character Name:
+        <input
+          type="text"
+          name="name"
+          value={formValue.name}
+          onChange={(e) =>
+            setFormValue({ ...formValue, char_name: e.target.value })
+          }
+        />
+      </label>
+      <div>
+        <Button onClick={(e) => handleDecrementClick(e)}>◀</Button>
+        <Label>{formValue.atk} ATK</Label>
+        <Button
+          onClick={(e) => {
+            formValue.statPts > 0
+              ? handleIncrementClick(e)
+              : console.log("Well, shit");
+          }}
+        >
+          ▶
+        </Button>
+      </div>
+      <div>
+        <Button onClick={(e) => handleDecrementClick(e)}>◀</Button>
+        <Label>{formValue.acc} ACC</Label>
+        <Button
+          onClick={(e) => {
+            formValue.statPts > 0
+              ? handleIncrementClick(e)
+              : console.log("Well, shit");
+          }}
+        >
+          ▶
+        </Button>
+      </div>
+      <div>
+        <Button onClick={(e) => handleDecrementClick(e)}>◀</Button>
+        <Label>{formValue.vit} VIT</Label>
+        <Button
+          onClick={(e) => {
+            formValue.statPts > 0
+              ? handleIncrementClick(e)
+              : console.log("Well, shit");
+          }}
+        >
+          ▶
+        </Button>
+      </div>
+      <div>
+        <Button onClick={(e) => handleDecrementClick(e)}>◀</Button>
+        <Label>{formValue.luk} LUK</Label>
+        <Button
+          onClick={(e) => {
+            formValue.statPts > 0
+              ? handleIncrementClick(e)
+              : console.log("Well, shit");
+          }}
+        >
+          ▶
+        </Button>
+      </div>
+
+      <Label>Attributes Left: {formValue.statPts}</Label>
+      <br />
+
+      <form onSubmit={handleSubmit}>
+        <input type="submit" value="Submit" />
       </form>
     </div>
   );
