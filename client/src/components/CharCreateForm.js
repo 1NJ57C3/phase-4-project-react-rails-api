@@ -15,19 +15,25 @@ function CharCreateForm() {
       <Textarea>Input Name Here</Textarea>
       <form>
         <div>
-          <Button> Left ATK</Button>
+          <Button> Down ATK</Button>
           <Label>ATK</Label>
-          <Button> Right ATK</Button>
+          <Button> Up ATK</Button>
         </div>
-        <Button> Left ACC</Button>
-        <Label>ACC</Label>
-        <Button> Right ACC</Button>
-        <Button> Left VIT</Button>
-        <Label>VIT</Label>
-        <Button> Right VIT</Button>
-        <Button> Left LUK</Button>
-        <Label>LUK</Label>
-        <Button> Right LUK</Button>
+        <div>
+          <Button> Down ACC</Button>
+          <Label>ACC</Label>
+          <Button> Up ACC</Button>
+        </div>
+        <div>
+          <Button> Down VIT</Button>
+          <Label>VIT</Label>
+          <Button> Up VIT</Button>
+        </div>
+        <div>
+          <Button> Down LUK</Button>
+          <Label>LUK</Label>
+          <Button> Up LUK</Button>
+        </div>
       </form>
       <Label>Attributes Left: "Number Here"</Label>
       <Button>ReRoll</Button>
