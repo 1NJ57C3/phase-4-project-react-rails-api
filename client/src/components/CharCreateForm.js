@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Label, Button } from "../styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function CharCreateForm() {
   useEffect(() => {
@@ -20,9 +20,7 @@ function CharCreateForm() {
     statPts: 5,
   });
   const [jobs, setJobs] = useState([]);
-
-  console.log(formValue);
-  console.log(jobs);
+  let navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -30,14 +28,16 @@ function CharCreateForm() {
       alert("Spend remaining stat points, bitch");
     } else if (formValue.char_name.length < 3) {
       alert("Give us a better name than that, bitch");
-    } 
-    else {
-      // console.log(formValue);
+    } else {
       fetch("/characters", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formValue),
-      }).then((r) => r.json()).then(data=>console.log(data))
+      })
+        .then((r) => r.json())
+        .then((characterInfoReturn) => {
+          navigate(`/characters/${characterInfoReturn.id}`);
+        });
     }
   }
 
@@ -80,7 +80,7 @@ function CharCreateForm() {
     let stat = e.target.parentNode.children[1].innerHTML
       .slice(-3)
       .toLowerCase();
-    console.log("TEST :", formValue[stat]);
+
     setFormValue({
       ...formValue,
       [stat]: formValue[stat] + 1,

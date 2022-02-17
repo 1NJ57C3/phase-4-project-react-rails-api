@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import uuid from 'react-uuid'
 
 
-function CharMenu() {
+function CharMenu({setCharacterScreen}) {
   const [charHolder, setCharHolder] = useState([]);
 
   function handleDelete(char) {
@@ -21,7 +21,7 @@ function CharMenu() {
 
   const displayCharList = charHolder.map((char) => {
     return (
-      <CharCard key={uuid()} char={char} handleDelete={handleDelete} />
+      <CharCard key={uuid()} char={char} handleDelete={handleDelete} setCharacterScreen={setCharacterScreen} />
     );
   });
 
