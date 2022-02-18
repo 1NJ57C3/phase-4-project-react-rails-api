@@ -1,14 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Button, ButtonCharMenuLeft, BoxCharMenu,Box } from "../styles";
+import { Button, ButtonCharMenuLeft, BoxCharMenu, Box } from "../styles";
 
 import { Link, useNavigate } from "react-router-dom";
-import uuid from "react-uuid";
+// import uuid from "react-uuid";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function CharMenu({ setCharacterScreen }) {
   const [charHolder, setCharHolder] = useState([]);
-  
+
   let navigate = useNavigate();
 
   function handleDelete(char) {
@@ -77,34 +77,36 @@ function CharMenu({ setCharacterScreen }) {
                   >
                     {(provided) => (
                       <li
+                        className="grow"
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
                         <BoxCharMenu>
                           <div>
-                          <ButtonCharMenuLeft
-                            onClick={() => {
-                              clickSelect(char);
-                            }}
-                          >
-                          
-                            Choose
-                          </ButtonCharMenuLeft>
-                          <BoxCharMenu>
-                          {char.char_name} the {char.job}
-                          </BoxCharMenu>
-                          <ButtonCharMenuLeft
-                            onClick={() => {
-                              clickDelete(char);
-                            }}
-                          >
-                            {" "}
-                            Delete
-                          </ButtonCharMenuLeft>
-
+                            <ButtonCharMenuLeft
+                              onClick={() => {
+                                clickSelect(char);
+                              }}
+                            >
+                              Choose
+                            </ButtonCharMenuLeft>
+                            <BoxCharMenu
+                              onClick={() => {
+                                clickSelect(char);
+                              }}
+                            >
+                              {char.char_name} the {char.job}
+                            </BoxCharMenu>
+                            <ButtonCharMenuLeft
+                              onClick={() => {
+                                clickDelete(char);
+                              }}
+                            >
+                              {" "}
+                              Delete
+                            </ButtonCharMenuLeft>
                           </div>
-
                         </BoxCharMenu>
                       </li>
                     )}

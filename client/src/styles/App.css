@@ -7,6 +7,17 @@ ul {
   text-align: center;
 }
 
+.invisible {  
+  display:none;
+}
+
+/* .grow { transition: all .1s ease-in-out; } */
+
+ 
+ .grow:hover { transform: scale(1.025); }   
+ .grow2 { transition: all .1s ease-in-out; }  
+.grow2:hover { transform: scale(1.025); }   
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -29,6 +40,8 @@ ul {
   color: white;
 }
 
+
+
 .App-link {
   color: #61dafb;
 }
@@ -40,4 +53,30 @@ ul {
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.image-card {
+  width: 30vw;
+  height: 30vw;
+  object-fit: cover;
+}
+
+#lightbox-img {
+  height: 80vh;
+  max-width: 90vw;
+  object-fit: cover;
+}
+
+#lightbox {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

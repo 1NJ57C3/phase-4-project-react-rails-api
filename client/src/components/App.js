@@ -1,12 +1,13 @@
 import "../styles/App.css";
 import { useState, useEffect } from "react";
-import SignUpForm from "./SignUpForm";
+// import SignUpForm from "./SignUpForm";
 import NavBar from "./NavBar";
 import { Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import CharMenu from "../pages/CharMenu";
-import CharCreateForm from "./CharCreateForm";
-import CharSpec from "./CharSpec";
+import CharCreateForm from "../pages/CharCreateForm";
+import CharSpec from "../pages/CharSpec";
+
 function App() {
   const [user, setUser] = useState(null);
   const [characterScreen,setCharacterScreen] = useState({})
