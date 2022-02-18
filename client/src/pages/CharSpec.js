@@ -153,11 +153,8 @@ const showPrev = (e) => {
 
   return (
     <div>
-
-<div>{imageCards}</div>
-      
-      {
-        lightboxDisplay ? 
+      <div>{imageCards}</div>
+      {lightboxDisplay ? 
         <div id="lightbox" onClick={hideLightBox}>
           <button onClick={showPrev}>⭠</button>
           <img id="lightbox-img" src={imageToShow}></img>
@@ -165,57 +162,29 @@ const showPrev = (e) => {
         </div>
        : ""
       }
-  
-  
-
-
-
-
       <CharacterHeader>
         {characterInfo.char_name} the {characterInfo.job}
       </CharacterHeader>
       <BigBox >
         <Box2>
           <p>Class: {characterInfo.job}</p>
-          {!!Object.keys(characterInfo).length ? (
-            <p>
-              Attack: {characterInfo.u_atk} ({characterInfo.atk} + {renderGearMod('atk')})
-            </p>
-          ) : (
-            "Loading... "
-          )}
+          {!!Object.keys(characterInfo).length ? (<p>Attack: {characterInfo.u_atk} ({characterInfo.atk} + {renderGearMod('atk')})</p>) : ("Loading... ")}
           <p>Accuracy: {characterInfo.acc}</p>
           <p>Health: {characterInfo.vit}</p>
           <p>Luck: {characterInfo.luk}</p>
-          {!!Object.keys(characterInfo).length ? (
-            <p>
-              Armor: {characterInfo.u_arm} (+ {renderGearMod('arm')})
-            </p>
-          ) : (
-            "Loading..."
-          )}
+          {!!Object.keys(characterInfo).length ? (<p>Armor: {characterInfo.u_arm} (+ {renderGearMod('arm')})</p>) : ("Loading...")}
         </Box2>
-        <ImageJob
-          className="charImage grow2"
-          src={whichImage()}
-          alt="First"
-          onClick={() => showImage(whichImage())}
-          
-        ></ImageJob>
+        <ImageJob className="charImage grow2" src={whichImage()} alt="First" onClick={() => showImage(whichImage())} />
       </BigBox>
       <BigBox2 className="Gear">
         <div className="Weapon">
           <Box3 >
-            {!!Object.keys(characterInfo).length
-              ? renderGearSpecs("weapon")
-              : "Loading... "}
+            {!!Object.keys(characterInfo).length ? renderGearSpecs("weapon") : "Loading... "}
           </Box3>
         </div>
         <div className="Armor">
           <Box3 >
-            {!!Object.keys(characterInfo).length
-              ? renderGearSpecs("armor")
-              : "Loading... "}
+            {!!Object.keys(characterInfo).length ? renderGearSpecs("armor") : "Loading... "}
           </Box3>
         </div>
       </BigBox2>

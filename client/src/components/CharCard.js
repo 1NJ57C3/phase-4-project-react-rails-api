@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, Box } from "../styles";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CharCard({ char, handleDelete }) {
+// Original version -- Kept in case we want to disable drag/droppable
+
   let navigate = useNavigate();
 
   function clickDelete() {

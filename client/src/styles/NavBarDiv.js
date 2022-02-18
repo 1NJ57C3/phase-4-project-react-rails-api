@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
 const NavBarDiv = styled.div`
-/* background: black;
-height: 7vh;
-display: flex;
-  justify-content: right; */
   background: black;
   height: 50%;
   display: flex;
