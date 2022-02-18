@@ -38,10 +38,16 @@ a4 = Equipment.create!(item_name:'ripped undershirt', stat: 'arm', mod: 4, is_po
 a5 = Equipment.create!(item_name:'rusty breastplate', stat: 'arm', mod: 4, is_positive: true, item_type:'s_armor')
 
 puts "🗡🏹 Distributing Starter Gear... 🏹🗡"
-c1.character_equipment.create(equipment_id:(Equipment.all.sample.id))
-c2.character_equipment.create(equipment_id:(Equipment.all.sample.id))
-c3.character_equipment.create(equipment_id:(Equipment.all.sample.id))
-c4.character_equipment.create(equipment_id:(Equipment.all.sample.id))
-c5.character_equipment.create(equipment_id:(Equipment.all.sample.id))
+c1.character_equipment.create(equipment_id:(Equipment.where(item_type: 's_weapon').sample.id))
+c1.character_equipment.create(equipment_id:(Equipment.where(item_type: 's_armor').sample.id))
+c2.character_equipment.create(equipment_id:(Equipment.where(item_type: 's_weapon').sample.id))
+c2.character_equipment.create(equipment_id:(Equipment.where(item_type: 's_armor').sample.id))
+c3.character_equipment.create(equipment_id:(Equipment.where(item_type: 's_weapon').sample.id))
+c3.character_equipment.create(equipment_id:(Equipment.where(item_type: 's_armor').sample.id))
+c4.character_equipment.create(equipment_id:(Equipment.where(item_type: 's_weapon').sample.id))
+c4.character_equipment.create(equipment_id:(Equipment.where(item_type: 's_armor').sample.id))
+c5.character_equipment.create(equipment_id:(Equipment.where(item_type: 's_weapon').sample.id))
+c5.character_equipment.create(equipment_id:(Equipment.where(item_type: 's_armor').sample.id))
+
 
 puts "🌳 Seeding Protocol Complete. 🌳"

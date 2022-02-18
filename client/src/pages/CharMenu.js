@@ -1,16 +1,29 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Button } from "../styles";
+import { Button, Box } from "../styles";
 import CharCard from "../components/CharCard";
-import { Link } from "react-router-dom";
-import uuid from 'react-uuid'
+import { Link,useNavigate } from "react-router-dom";
+import uuid from "react-uuid";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-
-function CharMenu({setCharacterScreen}) {
+function CharMenu({ setCharacterScreen }) {
   const [charHolder, setCharHolder] = useState([]);
+  const [charTemp, setCharTemp] = useState({});
+  let navigate = useNavigate();
 
   function handleDelete(char) {
     setCharHolder(charHolder.filter((c) => c.id !== char.id));
+  }
+  
+
+  function clickDelete(char) {
+    fetch(`/characters/${char.id}`, {
+      method: "DELETE",
+    }).then(() => handleDelete(char));
+  }
+
+  function clickSelect(char) {
+    navigate(`/characters/${char.id}`);
   }
 
   useEffect(() => {
@@ -19,27 +32,76 @@ function CharMenu({setCharacterScreen}) {
       .then((charList) => setCharHolder(charList));
   }, []);
 
-  const displayCharList = charHolder.map((char) => {
-    return (
-      <CharCard key={uuid()} char={char} handleDelete={handleDelete} setCharacterScreen={setCharacterScreen} />
-    );
-  });
+  // const displayCharList = charHolder.map((char, index) => {
+  //   return (
+  //     <CharCard
+  //       key={uuid()}
+  //       char={char}
+  //       handleDelete={handleDelete}
+  //       setCharacterScreen={setCharacterScreen}
+  //     />
+  //   );
+  // });
 
+  function handleOnDragEnd(result) {
+    if (!result.destination) return;
 
+    const items = Array.from(charHolder);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    setCharHolder(items);
+  }
 
   //dagger throwing animation, CSS bigger on mouseover of Character card
   //need a link to connect to Alayra's Attributes page
 
   return (
-    <>
+    <div>
       <div>
-        <Link to={"/char_create"} > 
-        <Button primary> New Character </Button>{" "}
+        <Link to={"/char_create"}>
+          <Button primary> New Character </Button>
         </Link>
-        <div>{displayCharList}</div>
-
       </div>
-    </>
+
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="characters">
+          {(provided) => (
+            <ul
+              className="characters"
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {charHolder.map((char, index) => {
+                
+                return (
+                  <Draggable
+                    key={char.id}
+                    draggableId={char.char_name}
+                    index={index}
+                  >
+                    {(provided) => (
+                      <li
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        <Box>
+                          <Button onClick={()=>{clickDelete(char)}}>Delete</Button>
+                          {char.char_name} the {char.job}
+                          <Button onClick={()=>{clickSelect(char)}}> Choose</Button>
+                        </Box>
+                      </li>
+                    )}
+                  </Draggable>
+                );
+              })}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </div>
   );
 }
 
