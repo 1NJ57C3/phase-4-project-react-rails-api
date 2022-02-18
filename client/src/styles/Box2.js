@@ -9,7 +9,7 @@ const Box2 = styled.div`
   margin-top: 10px;
   margin-bottom: 10vh;
   margin-left: 10vh;
-  margin-right: 20vh;
+  margin-right: 10vh;
   width: 15%;
   float: left
 `;

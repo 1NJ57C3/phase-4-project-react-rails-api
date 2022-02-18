@@ -1,14 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Button, Box } from "../styles";
-import CharCard from "../components/CharCard";
+import { Button, ButtonCharMenuLeft, BoxCharMenu,Box } from "../styles";
+
 import { Link, useNavigate } from "react-router-dom";
 import uuid from "react-uuid";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function CharMenu({ setCharacterScreen }) {
   const [charHolder, setCharHolder] = useState([]);
-  const [charTemp, setCharTemp] = useState({});
+  
   let navigate = useNavigate();
 
   function handleDelete(char) {
@@ -81,24 +81,31 @@ function CharMenu({ setCharacterScreen }) {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        <Box>
-                          <Button
-                            onClick={() => {
-                              clickDelete(char);
-                            }}
-                          >
-                            Delete
-                          </Button>
-                          {char.char_name} the {char.job}
-                          <Button
+                        <BoxCharMenu>
+                          <div>
+                          <ButtonCharMenuLeft
                             onClick={() => {
                               clickSelect(char);
                             }}
                           >
-                            {" "}
+                          
                             Choose
-                          </Button>
-                        </Box>
+                          </ButtonCharMenuLeft>
+                          <BoxCharMenu>
+                          {char.char_name} the {char.job}
+                          </BoxCharMenu>
+                          <ButtonCharMenuLeft
+                            onClick={() => {
+                              clickDelete(char);
+                            }}
+                          >
+                            {" "}
+                            Delete
+                          </ButtonCharMenuLeft>
+
+                          </div>
+
+                        </BoxCharMenu>
                       </li>
                     )}
                   </Draggable>
