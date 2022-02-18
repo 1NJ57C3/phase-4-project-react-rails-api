@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
-const ButtonCharMenuLeft = styled.button`
+const ButtonNewCharacter = styled.button`
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  text-align: center;
   border: 1px solid transparent;
   border-radius: 6px;
   text-decoration: none;
@@ -12,4 +13,4 @@ const ButtonCharMenuLeft = styled.button`
   color: lightgrey;
 `;
 
-export default ButtonCharMenuLeft;
+export default ButtonNewCharacter;
