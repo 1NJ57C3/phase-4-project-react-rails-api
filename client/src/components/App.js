@@ -20,8 +20,6 @@ function App() {
     });
   }, []);
 
-
-
   if (!user) return <Login onLogin={setUser} />;
 
   return (
@@ -38,4 +36,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 
