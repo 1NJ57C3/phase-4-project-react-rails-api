@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Label, Input, Button } from "../styles";
-import { Link, useNavigate } from "react-router-dom";
+import { Label, Button } from "../styles";
+import { useNavigate } from "react-router-dom";
 
 function CharCreateForm() {
   useEffect(() => {

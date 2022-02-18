@@ -35,24 +35,28 @@ class CharactersController < ApplicationController
     def u
         User.find_by(id: session[:user_id])
     end
+    
+    def c_params
+        params.permit(:char_name, :job, :atk, :acc, :vit, :luk, :arm)
+    end
+    
+    # def starter gear
+    #     {equipment_id: Equipment.where(item_type: "s_#{gear}").sample.id}
+    # end
 
     def starter_weapon
-        {equipment_id: Equipment.where(item_type: 's_weapon').sample.id}
+        {equipment_id: Equipment.where(item_type: "s_weapon").sample.id}
     end
 
     def starter_armor
-        {equipment_id: Equipment.where(item_type: 's_armor').sample.id}
+        {equipment_id: Equipment.where(item_type: "s_armor").sample.id}
     end
 
     def rand_weapon
-        {equipment_id: Equipment.where(stat: 'atk').sample.id}
+        {equipment_id: Equipment.where(stat: "atk").sample.id}
     end
 
     def rand_armor
-        {equipment_id: Equipment.where(stat: 'arm').sample.id}
-    end
-
-    def c_params
-        params.permit(:char_name, :job, :atk, :acc, :vit, :luk, :arm)
+        {equipment_id: Equipment.where(stat: "arm").sample.id}
     end
 end

@@ -1,39 +1,45 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {
-  BigBox2,
-  BigBox,
-  Box2,
-  Box3,
-  Button,
-  ImageJob,
-  CharacterHeader,
-} from "../styles";
+import { BigBox2, BigBox, Box2, Box3, ButtonNewCharacter, ImageJob, CharacterHeader, } from "../styles";
 
 function CharSpec() {
+  const [charInfo, setCharInfo] = useState({});
+  const stateLoaded = !!Object.keys(charInfo).length;
   let params = useParams();
-
-  const [characterInfo, setCharacterInfo] = useState({});
-
+  
   useEffect(() => {
     fetch(`/characters/${params.id}`)
-      .then((r) => r.json())
-      .then((data) => {
-        setCharacterInfo(data);
-      });
+    .then((r) => r.json())
+    .then((data) => {
+      setCharInfo(data);
+    });
   }, [params.id]);
-
-  function whichImage() {
-    if (characterInfo.job === "warrior") {
-      return "https://img.itch.zone/aW1hZ2UvOTEyNjM2LzUxODA1MTAuZ2lm/original/9yC%2Fni.gif"; //This is Warrior Image
-    } else if (characterInfo.job === "wizard") {
-      return "https://img.itch.zone/aW1hZ2UvNzMyODA0LzQxMzUxODIuZ2lm/original/tc%2FXFz.gif"; //This is Wizard Image
-    } else
-      return "https://img.itch.zone/aW1hZ2UvOTIzMjcxLzUyNzk2NzkuZ2lm/original/vg7s0I.gif"; //This is Thief Image
+  
+  function onRerollGear() {
+    fetch(`/characters/${params.id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type":"application/json"
+      }, body: JSON.stringify({charInfo})
+    })
+    .then(r => r.json())
+    .then(d => {
+      setCharInfo(d)
+    })
   }
-
+  
+  function whichImage() {
+    if (charInfo.job === "warrior") {
+      return "https://img.itch.zone/aW1hZ2UvOTEyNjM2LzUxODA1MTAuZ2lm/original/9yC%2Fni.gif"; //This is Warrior Image
+    } else if (charInfo.job === "wizard") {
+      return "https://img.itch.zone/aW1hZ2UvNzMyODA0LzQxMzUxODIuZ2lm/original/tc%2FXFz.gif"; //This is Wizard Image
+    } else if (charInfo.job === 'thief') {
+      return "https://img.itch.zone/aW1hZ2UvOTIzMjcxLzUyNzk2NzkuZ2lm/original/vg7s0I.gif"; //This is Thief Image
+    }
+  }
+  
   function renderGearSpecs(type) {
-    const gear = characterInfo.equipment.filter((e) => {
+    const gear = charInfo.equipment.filter((e) => {
       return e.item_type.includes(type);
     });
     return (
@@ -48,71 +54,38 @@ function CharSpec() {
     );
   }
   
-  function rerollGear() {
-    fetch(`/characters/${params.id}`, {
-      method: 'PATCH',
-      headers: {
-        "Content-Type":"application/json"
-      }, body: JSON.stringify({characterInfo})
-    })
-    .then(r => r.json())
-    .then(d => {
-      setCharacterInfo(d)
-    })
-  }
-
-  const renderGearMod = (type) => characterInfo.equipment.filter(e => e.stat === type)[0].mod;
-
+  const renderGearMod = (type) => charInfo.equipment.filter(e => e.stat === type)[0].mod;
+  
   return (
     <div>
       <CharacterHeader>
-        {characterInfo.char_name} the {characterInfo.job}
+        {charInfo.char_name} the {charInfo.job}
       </CharacterHeader>
       <BigBox>
         <Box2>
-          <p>Class: {characterInfo.job}</p>
-          {!!Object.keys(characterInfo).length ? (
-            <p>
-              Attack: {characterInfo.u_atk} ({characterInfo.atk} + {renderGearMod('atk')})
-            </p>
-          ) : (
-            "Loading... "
-          )}
-          <p>Accuracy: {characterInfo.acc}</p>
-          <p>Health: {characterInfo.vit}</p>
-          <p>Luck: {characterInfo.luk}</p>
-          {!!Object.keys(characterInfo).length ? (
-            <p>
-              Armor: {characterInfo.u_arm} (+ {renderGearMod('arm')})
-            </p>
-          ) : (
-            "Loading..."
-          )}
+          <p>Class: {charInfo.job}</p>
+          {stateLoaded ? ( <p>Attack: {charInfo.u_atk} ({charInfo.atk} + {renderGearMod('atk')})</p> ) : ( "Loading... " )}
+          <p>Accuracy: {charInfo.acc}</p>
+          <p>Health: {charInfo.vit}</p>
+          <p>Luck: {charInfo.luk}</p>
+          {stateLoaded ? ( <p>Armor: {charInfo.u_arm} (+ {renderGearMod('arm')})</p> ) : ( "Loading..." )}
         </Box2>
-        <ImageJob
-          className="charImage"
-          src={whichImage()}
-          alt="First"
-        ></ImageJob>
+        <ImageJob className="charImage" src={whichImage()} alt="First" />
       </BigBox>
       <BigBox2 className="Gear">
         <div className="Weapon">
           <Box3>
-            {!!Object.keys(characterInfo).length
-              ? renderGearSpecs("weapon")
-              : "Loading... "}
+            {stateLoaded ? renderGearSpecs("weapon") : "Loading... "}
           </Box3>
         </div>
         <div className="Armor">
           <Box3>
-            {!!Object.keys(characterInfo).length
-              ? renderGearSpecs("armor")
-              : "Loading... "}
+            {stateLoaded ? renderGearSpecs("armor") : "Loading... "}
           </Box3>
         </div>
       </BigBox2>
-      <div>
-        <Button onClick={rerollGear}>Randomize Gear</Button>
+      <div className='cspec'>
+        <ButtonNewCharacter onClick={onRerollGear}>Randomize Gear</ButtonNewCharacter>
       </div>
     </div>
   );

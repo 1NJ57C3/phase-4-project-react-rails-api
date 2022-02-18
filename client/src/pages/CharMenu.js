@@ -1,46 +1,27 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Button, ButtonCharMenuLeft, BoxCharMenu,Box } from "../styles";
-
+import { ButtonNewCharacter, ButtonCharMenuLeft, BoxCharMenu,Box } from "../styles";
 import { Link, useNavigate } from "react-router-dom";
-import uuid from "react-uuid";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-function CharMenu({ setCharacterScreen }) {
+function CharMenu() {
   const [charHolder, setCharHolder] = useState([]);
-  
   let navigate = useNavigate();
 
-  function handleDelete(char) {
-    setCharHolder(charHolder.filter((c) => c.id !== char.id));
-  }
+  useEffect(() => {
+    fetch("/characters")
+      .then((r) => r.json())
+      .then((charList) => setCharHolder(charList));
+  }, []);
+
+  const handleDelete = (char) => setCharHolder(charHolder.filter((c) => c.id !== char.id))
+  const clickSelect = (char) => navigate(`/characters/${char.id}`)
 
   function clickDelete(char) {
     fetch(`/characters/${char.id}`, {
       method: "DELETE",
     }).then(() => handleDelete(char));
   }
-
-  function clickSelect(char) {
-    navigate(`/characters/${char.id}`);
-  }
-
-  useEffect(() => {
-    fetch("http://localhost:4000/characters")
-      .then((r) => r.json())
-      .then((charList) => setCharHolder(charList));
-  }, []);
-
-  // const displayCharList = charHolder.map((char, index) => {
-  //   return (
-  //     <CharCard
-  //       key={uuid()}
-  //       char={char}
-  //       handleDelete={handleDelete}
-  //       setCharacterScreen={setCharacterScreen}
-  //     />
-  //   );
-  // });
 
   function handleOnDragEnd(result) {
     if (!result.destination) return;
@@ -54,9 +35,9 @@ function CharMenu({ setCharacterScreen }) {
 
   return (
     <div>
-      <div>
+      <div className='cmenu'>
         <Link to={"/char_create"}>
-          <Button primary> New Character </Button>
+          <ButtonNewCharacter> New Character </ButtonNewCharacter>
         </Link>
       </div>
 
@@ -83,28 +64,16 @@ function CharMenu({ setCharacterScreen }) {
                       >
                         <BoxCharMenu>
                           <div>
-                          <ButtonCharMenuLeft
-                            onClick={() => {
-                              clickSelect(char);
-                            }}
-                          >
-                          
-                            Choose
-                          </ButtonCharMenuLeft>
-                          <BoxCharMenu>
-                          {char.char_name} the {char.job}
-                          </BoxCharMenu>
-                          <ButtonCharMenuLeft
-                            onClick={() => {
-                              clickDelete(char);
-                            }}
-                          >
-                            {" "}
-                            Delete
-                          </ButtonCharMenuLeft>
-
+                            <ButtonCharMenuLeft onClick={() => {clickSelect(char)}}>
+                              Choose
+                            </ButtonCharMenuLeft>
+                            <BoxCharMenu>
+                              {char.char_name} the {char.job}
+                            </BoxCharMenu>
+                            <ButtonCharMenuLeft onClick={() => {clickDelete(char)}}>
+                              Delete
+                            </ButtonCharMenuLeft>
                           </div>
-
                         </BoxCharMenu>
                       </li>
                     )}
