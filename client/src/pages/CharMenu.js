@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { ButtonNewCharacter, ButtonCharMenuLeft, BoxCharMenu,Box } from "../styles";
+import { ButtonNewCharacter, ButtonCharMenuLeft, BoxCharMenu, Box } from "../styles";
 import { Link, useNavigate } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
@@ -57,17 +57,13 @@ function CharMenu() {
                     index={index}
                   >
                     {(provided) => (
-                      <li
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
+                      <li className="grow" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                         <BoxCharMenu>
                           <div>
                             <ButtonCharMenuLeft onClick={() => {clickSelect(char)}}>
                               Choose
                             </ButtonCharMenuLeft>
-                            <BoxCharMenu>
+                            <BoxCharMenu onClick={() => {clickSelect(char)}}>
                               {char.char_name} the {char.job}
                             </BoxCharMenu>
                             <ButtonCharMenuLeft onClick={() => {clickDelete(char)}}>

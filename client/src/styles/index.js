@@ -18,6 +18,7 @@ import Nameh1 from "./Nameh1";
 import BoxCharMenuTitle from "./BoxCharMenuTitle";
 import ButtonCharMenuRight from "./ButtonCharMenuRight";
 import ButtonNewCharacter from "./ButtonNewCharacter";
+import ButtonNav from "./ButtonNav";
 
 export {
   Box,
@@ -40,4 +41,5 @@ export {
   Nameh1,
   BoxCharMenuTitle,
   ButtonNewCharacter,
+  ButtonNav,
 };

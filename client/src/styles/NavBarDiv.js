@@ -2,8 +2,10 @@ import styled from "styled-components";
 
 const NavBarDiv = styled.div`
   background: black;
-  height: 5vh;
+  height: 50%;
   display: flex;
-  justify-content: right;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1px 1%;
 `;
 export default NavBarDiv;
