@@ -12,9 +12,12 @@ import Textarea from "./Textarea";
 import Error from "./Error";
 import ImageJob from "./ImageJob";
 import CharacterHeader from "./CharacterHeader";
-import ButtonCharMenuLeft from "./ButtonCharMenu";
+import ButtonCharMenuLeft from "./ButtonCharMenuLeft";
 import BoxCharMenu from "./BoxCharMenu";
 import Nameh1 from "./Nameh1";
+import BoxCharMenuTitle from "./BoxCharMenuTitle";
+import ButtonCharMenuRight from "./ButtonCharMenuRight";
+import ButtonNewCharacter from "./ButtonNewCharacter";
 
 export {
   Box,
@@ -32,6 +35,9 @@ export {
   BigBox,
   BigBox2,
   ButtonCharMenuLeft,
+  ButtonCharMenuRight,
   BoxCharMenu,
   Nameh1,
+  BoxCharMenuTitle,
+  ButtonNewCharacter,
 };

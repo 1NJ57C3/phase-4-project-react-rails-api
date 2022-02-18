@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const BoxCharMenu = styled.div`
+const BoxCharMenuTitle = styled.div`
 background:grey;
 display: inline-block;
 text-align:center;
@@ -14,7 +14,7 @@ font-size: 2rem;
   margin-bottom: 10px;
   margin-right: auto;
   margin-left: auto;
-  width: 75%;  
+  width: 50%;  
 `;
 
-export default BoxCharMenu;
+export default BoxCharMenuTitle;
