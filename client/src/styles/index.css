@@ -1,14 +1,56 @@
 body {
   margin: 0;
-  font-family:"Fondamento", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family:"Fondamento", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #444444
+  background: #444444;
 }
 
 code {
-  font-family: "Fondamento",source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: "Fondamento",source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+div.cform {
+  margin: auto;
+  margin-top: 50px;
+  width: 30%;
+  text-align: center;
+  /* border: 3px solid green; */
+  /* box-shadow: 0px 0px 73px rgb(92, 53, 9) inset; */
+  box-shadow: 0px 0px 36px rgb(131, 78, 36) inset;
+  border-radius: 6px;
+  padding: 27px 5px 87px;
+  /* background-image: url("https://www.myfreetextures.com/wp-content/uploads/2014/11/floral-old-paper-or-parchment.jpg"); */
+  background-image: url("https://www.myfreetextures.com/wp-content/uploads/2011/06/old-paper-floral-parchment-background-texture.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+div.cformhead {
+  margin: auto;
+  text-align: center;
+  /* border: 3px solid green; */
+  padding: 10px;
+}
+
+div.cformstats > span {
+  margin: auto;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  vertical-align: middle;
+  /* border: 1px solid red; */
+  width: 150px;
+  display: flex;
+  justify-content: space-around;
+}
+input.cform {
+  border-radius: 6px;
+  border: 1px solid transparent;
+  border-color: #dbdbdb;
+  max-width: 60%;
+  width: 100%;
+  /* font-size: 1rem; */
+  line-height: 1.5;
+  padding: 4px;
 }

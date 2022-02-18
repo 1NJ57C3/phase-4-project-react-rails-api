@@ -16,6 +16,7 @@ class CharactersController < ApplicationController
         render json: c, status: 201
     end
 
+    # * Rerolls character's gear
     def update
         c = u.characters.find_by(id: params[:id])
         c.character_equipment.first.update!(rand_weapon)

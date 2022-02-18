@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Label, Button } from "../styles";
+import { Label, Input, Button } from "../styles";
 import { Link, useNavigate } from "react-router-dom";
 
 function CharCreateForm() {
@@ -121,83 +121,56 @@ function CharCreateForm() {
   }
 
   return (
-    <div>
-      <div>
-        <h1>This is Character Create Form</h1>
+    <div className='cform'>
+      <div className='cformhead'>
+        <h1>Choose your Duelist</h1>
         <Button onClick={selectWar}> Warrior </Button>
         <Button onClick={selectThf}> Thief </Button>
         <Button onClick={selectWiz}> Wizard </Button>
       </div>
 
-      <label>
-        Character Name:
+      <Label>
+        Character Name: <br />
         <input
+          className='cform'
           type="text"
           name="name"
+          placeholder='Character Name...'
           value={formValue.name}
           onChange={(e) =>
             setFormValue({ ...formValue, char_name: e.target.value })
           }
         />
-      </label>
-      <div>
-        <Button onClick={(e) => handleDecrementClick(e)}>◀</Button>
-        <Label>{formValue.atk} ATK</Label>
-        <Button
-          onClick={(e) => {
-            formValue.statPts > 0
-              ? handleIncrementClick(e)
-              : console.log("Well, shit");
-          }}
-        >
-          ▶
-        </Button>
-      </div>
-      <div>
-        <Button onClick={(e) => handleDecrementClick(e)}>◀</Button>
-        <Label>{formValue.acc} ACC</Label>
-        <Button
-          onClick={(e) => {
-            formValue.statPts > 0
-              ? handleIncrementClick(e)
-              : console.log("Well, shit");
-          }}
-        >
-          ▶
-        </Button>
-      </div>
-      <div>
-        <Button onClick={(e) => handleDecrementClick(e)}>◀</Button>
-        <Label>{formValue.vit} VIT</Label>
-        <Button
-          onClick={(e) => {
-            formValue.statPts > 0
-              ? handleIncrementClick(e)
-              : console.log("Well, shit");
-          }}
-        >
-          ▶
-        </Button>
-      </div>
-      <div>
-        <Button onClick={(e) => handleDecrementClick(e)}>◀</Button>
-        <Label>{formValue.luk} LUK</Label>
-        <Button
-          onClick={(e) => {
-            formValue.statPts > 0
-              ? handleIncrementClick(e)
-              : console.log("Well, shit");
-          }}
-        >
-          ▶
-        </Button>
+      </Label>
+
+      <div className='cformstats'>
+        <span>
+          <Button onClick={(e) => handleDecrementClick(e)}>◀</Button>
+          <Label>{formValue.atk} ATK</Label>
+          <Button onClick={(e) => {formValue.statPts > 0 ? handleIncrementClick(e) : console.log("Well, shit")}}>▶</Button>
+        </span>
+        <span>
+          <Button onClick={(e) => handleDecrementClick(e)}>◀</Button>
+          <Label>{formValue.acc} ACC</Label>
+          <Button onClick={(e) => {formValue.statPts > 0 ? handleIncrementClick(e) : console.log("Well, shit")}}>▶</Button>
+        </span>
+        <span>
+          <Button onClick={(e) => handleDecrementClick(e)}>◀</Button>
+          <Label>{formValue.vit} VIT</Label>
+          <Button onClick={(e) => {formValue.statPts > 0 ? handleIncrementClick(e) : console.log("Well, shit")}}>▶</Button>
+        </span>
+        <span>
+          <Button onClick={(e) => handleDecrementClick(e)}>◀</Button>
+          <Label>{formValue.luk} LUK</Label>
+          <Button onClick={(e) => {formValue.statPts > 0 ? handleIncrementClick(e) : console.log("Well, shit")}}>▶</Button>
+        </span>
       </div>
 
       <Label>Attributes Left: {formValue.statPts}</Label>
       <br />
 
       <form onSubmit={handleSubmit}>
-        <input type="submit" value="Submit" />
+        <Button type="submit" value="Submit">Submit</Button>
       </form>
     </div>
   );
