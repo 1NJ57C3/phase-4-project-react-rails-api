@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
-const Nameh1 = styled.h1`
-font-size: 1rem;
+const Nameh1 = styled.p`
+  font-size: 40px;
+  /* font-family: "Press Start 2P", cursive; */
   border: 1px solid transparent;
   text-decoration: none;
-  margin-right: 1050px;
-  margin-top: .7vh;
+  margin-right: auto;
+  margin-left: 2vh;
+  margin-top: auto;
+  margin-bottom: auto;
   color: lightgrey;
 `;
 export default Nameh1;
