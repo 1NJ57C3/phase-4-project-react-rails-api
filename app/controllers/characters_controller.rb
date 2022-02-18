@@ -39,6 +39,6 @@ class CharactersController < ApplicationController
     end
 
     def c_params
-        params.permit(:char_name, :job, :atk, :acc, :vit, :luk)
+        params.permit(:char_name, :job, :atk, :acc, :vit, :luk,:arm)
     end
 end

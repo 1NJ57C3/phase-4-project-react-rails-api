@@ -14,9 +14,12 @@ function NavBar({ user, setUser }) {
   }
   return (
     <>
-    
       <Link to={"/"} >
       <Button onClick={handleLogoutClick}>Logout</Button>
+      </Link>
+
+      <Link to={"/"} >
+      <Button>Home</Button>
       </Link>
     </>
   );
