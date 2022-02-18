@@ -1,7 +1,7 @@
 import Box from "./Box";
 import Box2 from "./Box2";
 import Box3 from "./Box3";
-import Box4 from "./Box4";
+import NavBarDiv from "./NavBarDiv";
 import BigBox from "./BigBox";
 import BigBox2 from "./BigBox2";
 import Button from "./Button";
@@ -12,6 +12,9 @@ import Textarea from "./Textarea";
 import Error from "./Error";
 import ImageJob from "./ImageJob";
 import CharacterHeader from "./CharacterHeader";
+import ButtonCharMenuLeft from "./ButtonCharMenu";
+import BoxCharMenu from "./BoxCharMenu";
+import Nameh1 from "./Nameh1";
 
 export {
   Box,
@@ -25,7 +28,10 @@ export {
   Textarea,
   CharacterHeader,
   Box3,
-  Box4,
+  NavBarDiv,
   BigBox,
   BigBox2,
+  ButtonCharMenuLeft,
+  BoxCharMenu,
+  Nameh1,
 };

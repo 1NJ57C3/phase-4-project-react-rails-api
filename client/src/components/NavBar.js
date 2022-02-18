@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../styles";
+import { Button, NavBarDiv, Nameh1 } from "../styles";
 import { Link } from "react-router-dom";
 
 
@@ -13,7 +13,10 @@ function NavBar({ user, setUser }) {
     });
   }
   return (
-    <>
+    <NavBarDiv>
+      <Nameh1>Duelist</Nameh1>
+      
+
       <Link to={"/"} >
       <Button onClick={handleLogoutClick}>Logout</Button>
       </Link>
@@ -21,7 +24,7 @@ function NavBar({ user, setUser }) {
       <Link to={"/"} >
       <Button>Home</Button>
       </Link>
-    </>
+    </NavBarDiv>
   );
 }
 

@@ -26,11 +26,11 @@ function CharSpec() {
 
   function whichImage() {
     if (characterInfo.job === "warrior") {
-      return "https://opengameart.org/sites/default/files/warrior_f_attack.gif"; //This is Warrior Image
+      return "https://img.itch.zone/aW1hZ2UvOTEyNjM2LzUxODA1MTAuZ2lm/original/9yC%2Fni.gif"; //This is Warrior Image
     } else if (characterInfo.job === "wizard") {
       return "https://img.itch.zone/aW1hZ2UvNzMyODA0LzQxMzUxODIuZ2lm/original/tc%2FXFz.gif"; //This is Wizard Image
     } else
-      return "https://opengameart.org/sites/default/files/gif_arrow_shot.gif"; //This is Thief Image
+      return "https://img.itch.zone/aW1hZ2UvOTIzMjcxLzUyNzk2NzkuZ2lm/original/vg7s0I.gif"; //This is Thief Image
   }
 
   function renderGear(type) {
