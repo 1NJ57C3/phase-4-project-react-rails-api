@@ -1,5 +1,6 @@
 class CharacterEquipmentsController < ApplicationController
-    # ? Probably unnecessary
+    # ? Probably unnecessary at this stage... More than likely be useful later/stretch goals
+    
     def show
         render json: CharacterEquipment.find(params[:id])
     end

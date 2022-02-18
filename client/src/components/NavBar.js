@@ -8,22 +8,22 @@ function NavBar({ user, setUser }) {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
         setUser(null);
-
       }
     });
   }
+
   return (
     <NavBarDiv>
       <Nameh1>Duelist</Nameh1>
       
-
       <Link to={"/"} >
-      <Button onClick={handleLogoutClick}>Logout</Button>
+        <Button>Home</Button>
       </Link>
 
       <Link to={"/"} >
-      <Button>Home</Button>
+        <Button onClick={handleLogoutClick}>Logout</Button>
       </Link>
+
     </NavBarDiv>
   );
 }

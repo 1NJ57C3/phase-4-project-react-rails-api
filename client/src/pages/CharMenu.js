@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Button, ButtonCharMenuLeft, BoxCharMenu,BoxCharMenuTitle,ButtonCharMenuRight,ButtonNewCharacter } from "../styles";
+import { Button, ButtonCharMenuLeft, BoxCharMenu,Box } from "../styles";
 
 import { Link, useNavigate } from "react-router-dom";
 import uuid from "react-uuid";
@@ -56,7 +56,7 @@ function CharMenu({ setCharacterScreen }) {
     <div>
       <div>
         <Link to={"/char_create"}>
-          <ButtonNewCharacter primary> New Character </ButtonNewCharacter>
+          <Button primary> New Character </Button>
         </Link>
       </div>
 
@@ -83,17 +83,17 @@ function CharMenu({ setCharacterScreen }) {
                       >
                         <BoxCharMenu>
                           <div>
-                          <ButtonCharMenuRight
+                          <ButtonCharMenuLeft
                             onClick={() => {
                               clickSelect(char);
                             }}
                           >
                           
                             Choose
-                          </ButtonCharMenuRight>
-                          <BoxCharMenuTitle>
+                          </ButtonCharMenuLeft>
+                          <BoxCharMenu>
                           {char.char_name} the {char.job}
-                          </BoxCharMenuTitle>
+                          </BoxCharMenu>
                           <ButtonCharMenuLeft
                             onClick={() => {
                               clickDelete(char);
