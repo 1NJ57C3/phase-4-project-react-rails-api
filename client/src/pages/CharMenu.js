@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Button, Box } from "../styles";
 import CharCard from "../components/CharCard";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import uuid from "react-uuid";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
@@ -14,7 +14,6 @@ function CharMenu({ setCharacterScreen }) {
   function handleDelete(char) {
     setCharHolder(charHolder.filter((c) => c.id !== char.id));
   }
-  
 
   function clickDelete(char) {
     fetch(`/characters/${char.id}`, {
@@ -53,9 +52,6 @@ function CharMenu({ setCharacterScreen }) {
     setCharHolder(items);
   }
 
-  //dagger throwing animation, CSS bigger on mouseover of Character card
-  //need a link to connect to Alayra's Attributes page
-
   return (
     <div>
       <div>
@@ -73,7 +69,6 @@ function CharMenu({ setCharacterScreen }) {
               ref={provided.innerRef}
             >
               {charHolder.map((char, index) => {
-                
                 return (
                   <Draggable
                     key={char.id}
@@ -87,9 +82,22 @@ function CharMenu({ setCharacterScreen }) {
                         {...provided.dragHandleProps}
                       >
                         <Box>
-                          <Button onClick={()=>{clickDelete(char)}}>Delete</Button>
+                          <Button
+                            onClick={() => {
+                              clickDelete(char);
+                            }}
+                          >
+                            Delete
+                          </Button>
                           {char.char_name} the {char.job}
-                          <Button onClick={()=>{clickSelect(char)}}> Choose</Button>
+                          <Button
+                            onClick={() => {
+                              clickSelect(char);
+                            }}
+                          >
+                            {" "}
+                            Choose
+                          </Button>
                         </Box>
                       </li>
                     )}
