@@ -16,6 +16,13 @@ class CharactersController < ApplicationController
         render json: c, status: 201
     end
 
+    def update
+        c = u.characters.find_by(id: params[:id])
+        c.character_equipment.first.update!(rand_weapon)
+        c.character_equipment.second.update!(rand_armor)
+        render json: c
+    end
+
     def destroy
         c = u.characters.find(params[:id])
         c.destroy!
@@ -29,16 +36,22 @@ class CharactersController < ApplicationController
     end
 
     def starter_weapon
-        # {equipment_id: Equipment.where('item_type = ?', 's_weapon').sample.id}
         {equipment_id: Equipment.where(item_type: 's_weapon').sample.id}
     end
 
     def starter_armor
-        # {equipment_id: Equipment.where('item_type = ?', 's_armor').sample.id}
         {equipment_id: Equipment.where(item_type: 's_armor').sample.id}
     end
 
+    def rand_weapon
+        {equipment_id: Equipment.where(stat: 'atk').sample.id}
+    end
+
+    def rand_armor
+        {equipment_id: Equipment.where(stat: 'arm').sample.id}
+    end
+
     def c_params
-        params.permit(:char_name, :job, :atk, :acc, :vit, :luk,:arm)
+        params.permit(:char_name, :job, :atk, :acc, :vit, :luk, :arm)
     end
 end

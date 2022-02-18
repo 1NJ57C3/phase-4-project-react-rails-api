@@ -5,6 +5,7 @@ import {
   BigBox,
   Box2,
   Box3,
+  Button,
   ImageJob,
   CharacterHeader,
 } from "../styles";
@@ -22,8 +23,6 @@ function CharSpec() {
       });
   }, [params.id]);
 
-  console.log(characterInfo);
-
   function whichImage() {
     if (characterInfo.job === "warrior") {
       return "https://img.itch.zone/aW1hZ2UvOTEyNjM2LzUxODA1MTAuZ2lm/original/9yC%2Fni.gif"; //This is Warrior Image
@@ -33,11 +32,10 @@ function CharSpec() {
       return "https://img.itch.zone/aW1hZ2UvOTIzMjcxLzUyNzk2NzkuZ2lm/original/vg7s0I.gif"; //This is Thief Image
   }
 
-  function renderGear(type) {
+  function renderGearSpecs(type) {
     const gear = characterInfo.equipment.filter((e) => {
       return e.item_type.includes(type);
     });
-    console.log(gear);
     return (
       <>
         Equipped {type}
@@ -49,6 +47,21 @@ function CharSpec() {
       </>
     );
   }
+  
+  function rerollGear() {
+    fetch(`/characters/${params.id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type":"application/json"
+      }, body: JSON.stringify({characterInfo})
+    })
+    .then(r => r.json())
+    .then(d => {
+      setCharacterInfo(d)
+    })
+  }
+
+  const renderGearMod = (type) => characterInfo.equipment.filter(e => e.stat === type)[0].mod;
 
   return (
     <div>
@@ -60,8 +73,7 @@ function CharSpec() {
           <p>Class: {characterInfo.job}</p>
           {!!Object.keys(characterInfo).length ? (
             <p>
-              Attack: {characterInfo.u_atk} ({characterInfo.atk} +{" "}
-              {characterInfo.equipment[0].mod}){" "}
+              Attack: {characterInfo.u_atk} ({characterInfo.atk} + {renderGearMod('atk')})
             </p>
           ) : (
             "Loading... "
@@ -71,7 +83,7 @@ function CharSpec() {
           <p>Luck: {characterInfo.luk}</p>
           {!!Object.keys(characterInfo).length ? (
             <p>
-              Armor: {characterInfo.u_arm} (+{characterInfo.equipment[1].mod}){" "}
+              Armor: {characterInfo.u_arm} (+ {renderGearMod('arm')})
             </p>
           ) : (
             "Loading..."
@@ -87,18 +99,21 @@ function CharSpec() {
         <div className="Weapon">
           <Box3>
             {!!Object.keys(characterInfo).length
-              ? renderGear("weapon")
+              ? renderGearSpecs("weapon")
               : "Loading... "}
           </Box3>
         </div>
         <div className="Armor">
           <Box3>
             {!!Object.keys(characterInfo).length
-              ? renderGear("armor")
+              ? renderGearSpecs("armor")
               : "Loading... "}
           </Box3>
         </div>
       </BigBox2>
+      <div>
+        <Button onClick={rerollGear}>Randomize Gear</Button>
+      </div>
     </div>
   );
 }
