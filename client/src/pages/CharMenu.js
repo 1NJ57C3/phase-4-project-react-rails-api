@@ -7,7 +7,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 function CharMenu() {
   const [charHolder, setCharHolder] = useState([]);
   let navigate = useNavigate();
-
+// Fetching characters list from backend
   useEffect(() => {
     fetch("/characters")
       .then((r) => r.json())
@@ -40,7 +40,7 @@ function CharMenu() {
           <ButtonNewCharacter> New Character </ButtonNewCharacter>
         </Link>
       </div>
-
+{/* Drag and drop character name menu */}
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">
           {(provided) => (

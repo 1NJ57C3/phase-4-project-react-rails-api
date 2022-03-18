@@ -6,6 +6,7 @@ class ApplicationController < ActionController::API
 
   private
   
+  # Inherited Authorize function for all controllers. Checks to see if user has a session ID, if not Not Authorized Error.
     def authorize
       User.find_by(id: session[:user_id])
       render json: {errors: ["Not Authorized"]}, status: 401 unless session.include? :user_id

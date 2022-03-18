@@ -13,7 +13,7 @@ import {
 function CharSpec() {
   const [imageToShow, setImageToShow] = useState("");
   const [lightboxDisplay, setLightBoxDisplay] = useState(false);  
-
+// images for lightbox display: 
   //Dark Knight:
   const dk0="https://img.itch.zone/aW1hZ2UvOTIzMjcxLzUyNzk2NzkuZ2lm/original/vg7s0I.gif"
   const dk1="https://img.itch.zone/aW1hZ2UvOTIzMjcxLzUyNzk2ODIuZ2lm/original/dZ3Eds.gif";
@@ -56,10 +56,7 @@ function CharSpec() {
       return dkImages.map((image) => (<img className="image-card invisible" onClick={() => showImage(image)} src={image} alt="Images" />))
     }
   }
-  // const imageCards = dkImages.map((image) => (
-  //   <img className="image-card invisible" onClick={() => showImage(image)} src={image} alt="Images" />
-  // ));
-
+ 
   //function to show a specific image in the lightbox, amd make lightbox visible
   const showImage = (image) => {
     setImageToShow(image);
