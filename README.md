@@ -1,24 +1,36 @@
-# README
+# Duelist
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+- Made in 1 week, Group Project - Contributors   [1NJ57C3](https://github.com/1NJ57C3),[Nick Alayra](https://github.com/nalayra)
 
-* Ruby version
+This project is a dungeons and dragons inspired character builder. The app currently is able to auth users and save the character they make to a rails backend using the MVC model. Duelist allows you to create a character with certain attributes, receive randomized starter gear with stats that dynamically update your character attributes and displays a fun sprite image with varying animations.
 
-* System dependencies
+## Features of this App
 
-* Configuration
 
-* Database creation
+![Image](https://i.imgur.com/SZ3btzY.png)	
 
-* Database initialization
+- Authentication for user log in and persistent database
 
-* How to run the test suite
+- Drag and Drop character select 
 
-* Services (job queues, cache servers, search engines, etc.)
+- Attribute selection with boundary handling and limited stat pool from a template based on class
 
-* Deployment instructions
+- Receive randomized gear with differing rarities. User also has ability to reroll armor and weapon
 
-* ...
+- Lightbox display when character sprite is clicked on with sprite animations
+
+
+
+
+## Technology Used
+
+- Ruby on Rails
+- React javascript
+- SQL
+- [Styled Components](https://styled-components.com/),[React-Router](https://reactrouter.com/), 
+
+
+
+
