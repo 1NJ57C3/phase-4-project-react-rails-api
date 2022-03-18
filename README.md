@@ -37,7 +37,7 @@ This project is a dungeons and dragons inspired character builder. The app curre
 - Ruby on Rails
 - React javascript
 - SQL
-- [Styled Components](https://styled-components.com/),[React-Router](https://reactrouter.com/), 
+- [Styled Components](https://styled-components.com/),[React-Router](https://reactrouter.com/),[React Beautiful DnD](https://github.com/atlassian/react-beautiful-dnd) 
 
 
 
