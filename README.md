@@ -8,17 +8,25 @@ This project is a dungeons and dragons inspired character builder. The app curre
 
 ## Features of this App
 
-
-![Image](https://i.imgur.com/SZ3btzY.png)	
-
+***
+![](login.gif)
+***
 - Authentication for user log in and persistent database
-
+ ***
+![](dragDrop.gif)
+***
 - Drag and Drop character select 
-
+***
+![](Attributes.gif)
+***
 - Attribute selection with boundary handling and limited stat pool from a template based on class
-
+***
+![](randomGear.gif)
+***
 - Receive randomized gear with differing rarities. User also has ability to reroll armor and weapon
-
+***
+![](lightbox.gif)
+***
 - Lightbox display when character sprite is clicked on with sprite animations
 
 
