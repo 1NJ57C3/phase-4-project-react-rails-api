@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     skip_before_action :authorize, only: :create
-
+    # Creating a user if none exists and creating a session id.
     def create
         user = User.create!(user_params)
         session[:user_id] = user.id        

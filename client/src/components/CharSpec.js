@@ -14,7 +14,7 @@ function CharSpec() {
       setCharInfo(data);
     });
   }, [params.id]);
-  
+  // Reroll gear function for user to get new pieces of starter gear
   function onRerollGear() {
     fetch(`/characters/${params.id}`, {
       method: 'PATCH',

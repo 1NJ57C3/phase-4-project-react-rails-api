@@ -21,13 +21,13 @@ function CharCreateForm() {
   });
   const [jobs, setJobs] = useState([]);
   let navigate = useNavigate();
-
+// Error handling for submission of name from user
   function handleSubmit(e) {
     e.preventDefault();
     if (formValue.statPts > 0) {
-      alert("Spend remaining stat points, bitch");
+      alert("Spend remaining stat points");
     } else if (formValue.char_name.length < 3) {
-      alert("Give us a better name than that, bitch");
+      alert("Give us a better name than that");
     } else {
       fetch("/characters", {
         method: "POST",
@@ -40,7 +40,7 @@ function CharCreateForm() {
         });
     }
   }
-
+// Following functions set template for character creation stats
   function selectWar() {
     setFormValue({
       ...formValue,
@@ -87,7 +87,7 @@ function CharCreateForm() {
       statPts: formValue.statPts - 1,
     });
   }
-
+// Handling decrement click with boundary handling
   function handleDecrementClick(e) {
     let stat = e.target.parentNode.children[1].innerHTML
       .slice(-3)

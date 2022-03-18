@@ -19,6 +19,8 @@ function App() {
     });
   }, []);
 
+// Ternary function that checks to see if User exists, if not display login component
+
   if (!user) return <Login onLogin={setUser} />;
 
   return (

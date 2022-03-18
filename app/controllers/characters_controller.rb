@@ -40,9 +40,7 @@ class CharactersController < ApplicationController
         params.permit(:char_name, :job, :atk, :acc, :vit, :luk, :arm)
     end
     
-    # def starter gear
-    #     {equipment_id: Equipment.where(item_type: "s_#{gear}").sample.id}
-    # end
+   
 
     def starter_weapon
         {equipment_id: Equipment.where(item_type: "s_weapon").sample.id}

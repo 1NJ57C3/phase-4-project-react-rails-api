@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
     skip_before_action :authorize, only: :create
-
+# Finding user by username , authenticating if user exists by password. If so creating session id.
     def create
         user = User.find_by(username: params[:username])
         if user &.authenticate(params[:password])
