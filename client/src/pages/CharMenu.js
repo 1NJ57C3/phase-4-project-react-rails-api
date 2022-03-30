@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { ButtonNewCharacter, ButtonCharMenuLeft, BoxCharMenu, Box } from "../styles";
+import { ButtonNewCharacter, ButtonCharMenuLeft, BoxCharMenu } from "../styles";
 import { Link, useNavigate } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
