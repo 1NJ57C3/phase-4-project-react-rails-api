@@ -2,7 +2,7 @@
 
 ## Description
 
-- Made in 1 week, Group Project - Contributors   [1NJ57C3](https://github.com/1NJ57C3),[Nick Alayra](https://github.com/nalayra)
+- Made in 1 week, Group Project - Contributors   [1NJ57C3](https://github.com/1NJ57C3),[Nick Alayra](https://github.com/nalayra),[Lance Hebert](https://github.com/lancehebert)
 
 This project is a dungeons and dragons inspired character builder. The app currently is able to auth users and save the character they make to a rails backend using the MVC model. Duelist allows you to create a character with certain attributes, receive randomized starter gear with stats that dynamically update your character attributes and displays a fun sprite image with varying animations.
 
